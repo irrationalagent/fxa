@@ -13,6 +13,12 @@ const  PASSWORD_BALLOON = {
   NOT_EMAIL_UNMET: '.not-email.unmet',
 };
 
+const NEWSLETTERS = {
+  CONSUMER_BETA: '.consumer-beta-optin',
+  HEALTHY_INTERNET: '.marketing-email-optin',
+  ONLINE_SAFETY: '.online-safety-optin',
+};
+
 /*eslint-disable max-len*/
 module.exports = {
   '123DONE': {
@@ -47,6 +53,8 @@ module.exports = {
     ENGINE_HISTORY: '#sync-engine-history',
     ENGINE_PASSWORDS: '#sync-engine-passwords',
     HEADER: '#fxa-choose-what-to-sync-header',
+    NEWSLETTERS,
+    NEWSLETTERS_HEADER: '.get-involved',
     SUBMIT: 'button[type=submit]',
   },
   COMPLETE_RESET_PASSWORD: {
@@ -272,6 +280,7 @@ module.exports = {
     CUSTOMIZE_SYNC_CHECKBOX: '#customize-sync',
     EMAIL: 'input[type=email]',
     ERROR: '.error',
+    FIREFOX_FAMILY_SERVICES: '.firefox-family-services',
     HEADER: '#fxa-signup-header',
     LINK_SIGN_IN: 'a#have-account',
     LINK_SUGGEST_EMAIL_DOMAIN_CORRECTION: '#email-suggestion',
@@ -317,9 +326,11 @@ module.exports = {
     LINK_MARKETING: '.marketing-link',
     LINK_MARKETING_ANDROID: '.marketing-link-android',
     LINK_MARKETING_IOS: '.marketing-link-ios',
+    LINK_START_BROWSING: 'a[href="https://www.mozilla.org"]',
     LINK_WHY_IS_THIS_REQUIRED: 'a[href="/sms/why"]',
     PHONE_NUMBER: 'input[type="tel"]',
     PHONE_NUMBER_TOOLTIP: 'input[type="tel"] ~ .tooltip',
+    PROGRESS_INDICATOR: '.step-4',
     SUBMIT: 'button[type="submit"]',
     SUCCESS: '.success'
   },
@@ -327,6 +338,7 @@ module.exports = {
     HEADER: '#fxa-sms-sent-header',
     LINK_BACK: '#back',
     LINK_RESEND: '#resend',
+    LINK_START_BROWSING: 'a[href="https://www.mozilla.org"]',
     PHONE_NUMBER_SENT_TO: '#send-success',
     RESEND_SUCCESS: '#resend-success'
   },

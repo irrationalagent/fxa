@@ -1,3 +1,10 @@
+@mixin trailhead-background($base_uri) {
+  background-image: image-url($base_uri);
+  .trailhead & {
+    background-image: image-url('trailhead/' + $base_uri);
+  }
+}
+
 .graphic {
   background-position: center center;
   background-repeat: no-repeat;
@@ -14,7 +21,7 @@
 }
 
 .graphic-checkbox {
-  background-image: url('/images/account-verified.svg');
+  @include trailhead-background('account-verified.svg');
 
   @include respond-to('small') {
     height: 100px;
@@ -22,7 +29,7 @@
 }
 
 .graphic-mail {
-  background-image: url('/images/graphic_mail.svg');
+  @include trailhead-background('graphic_mail.svg');
 
   @include respond-to('small') {
     height: 100px;
@@ -30,7 +37,7 @@
 }
 
 .graphic-mail-bounced {
-  background-image: url('/images/graphic_mail_bounced.svg');
+  @include trailhead-background('graphic_mail_bounced.svg');
 
   @include respond-to('small') {
     height: 100px;
@@ -38,7 +45,7 @@
 }
 
 .graphic-connect-another-device {
-  background-image: url('/images/account-verified.svg');
+  @include trailhead-background('account-verified.svg');
 
   @include respond-to('small') {
     height: 100px;
@@ -46,7 +53,8 @@
 }
 
 .graphic-connect-another-device-hearts {
-  background-image: url('/images/account-verified-hearts.svg');
+  @include trailhead-background('account-verified-hearts.svg');
+
   height: 190px;
   margin: 20px auto -20px auto;
 
@@ -56,7 +64,8 @@
 }
 
 .graphic-two-factor-auth {
-  background-image: url('/images/graphic_two_factor_auth.svg');
+  @include trailhead-background('graphic_two_factor_auth.svg');
+
   height: 138px;
   margin-top: 20px;
 
@@ -66,7 +75,8 @@
 }
 
 .graphic-recovery-codes {
-  background-image: url('/images/graphic_recovery_codes.svg');
+  @include trailhead-background('graphic_recovery_codes.svg');
+
   height: 138px;
   margin-top: 20px;
 
@@ -97,9 +107,9 @@
 }
 
 .graphic-choose-what-to-sync {
-  background-image: image-url('choose_what_to_sync_devices.svg');
+  @include trailhead-background('choose_what_to_sync_devices.svg')
 }
 
 .graphic-pair-failure {
-  background-image: image-url('graphic_hearts_broken.svg');
+  @include trailhead-background('graphic_hearts_broken.svg')
 }
