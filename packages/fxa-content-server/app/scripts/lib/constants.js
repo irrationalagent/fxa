@@ -54,6 +54,8 @@ module.exports = {
   OAUTH_ACTION_SIGNUP: 'signup',
 
   OAUTH_PROMPT_CONSENT: 'consent',
+  OAUTH_PROMPT_NONE: 'none',
+
   OAUTH_TRUSTED_PROFILE_SCOPE: 'profile',
   OAUTH_TRUSTED_PROFILE_SCOPE_EXPANSION: ['profile:uid', 'profile:email', 'profile:display_name', 'profile:avatar'],
   // We only grant permissions that our UI currently prompts for. Others

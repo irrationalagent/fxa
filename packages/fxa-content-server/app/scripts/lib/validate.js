@@ -153,8 +153,9 @@ var Validate = {
    * @returns {Boolean}
    */
   isPromptValid (prompt) {
-    var valid = [
-      Constants.OAUTH_PROMPT_CONSENT
+    const valid = [
+      Constants.OAUTH_PROMPT_CONSENT,
+      Constants.OAUTH_PROMPT_NONE,
     ];
 
     return _.contains(valid, prompt);

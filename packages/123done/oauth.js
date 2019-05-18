@@ -59,6 +59,9 @@ function setupOAuthFlow(req, action, options = {}, cb) {
   if (options.acrValues) {
     params.acr_values = options.acrValues;
   }
+  if (options.prompt) {
+    params.prompt = options.prompt;
+  }
   request.get({
     uri: config.issuer_uri + '/.well-known/openid-configuration',
   }, function(err, r, body) {
@@ -145,6 +148,16 @@ module.exports = function(app, db) {
       return res.redirect(redirectUrl(params, oauthConfig));
     });
   });
+
+  app.get('/api/prompt_none', function(req, res) {
+    setupOAuthFlow(req, null, { prompt: 'none' }, function(err, params, oauthConfig) {
+      if (err) {
+        return res.send(400, err);
+      }
+      return res.redirect(redirectUrl(params, oauthConfig));
+    });
+  });
+
 
   app.get('/api/oauth', function(req, res) {
     var state = req.query.state;

@@ -38,7 +38,7 @@ export default {
   },
 
   fillPrefillableValues () {
-    this.getFormElements().each((index, el) => {
+    this.getFormElements && this.getFormElements().each((index, el) => {
       const $el = this.$(el);
       if (isElementFillable($el, this.formPrefill)) {
         const key = getKey($el);
@@ -48,7 +48,7 @@ export default {
   },
 
   beforeDestroy () {
-    this.getFormElements().each((index, el) => {
+    this.getFormElements && this.getFormElements().each((index, el) => {
       const $el = this.$(el);
       const key = getKey($el);
       if (key) {

@@ -25,16 +25,19 @@ When signing up a user.
 * `amo`
 
 ### `prompt`
-Specifies whether the content server prompts for permissions consent. Only applicable for `trusted` reliers.
-Untrusted reliers always show the prompt.
+Specifies whether the content server prompts for permissions consent. Only applicable for `trusted` relying parties.
+Untrusted relying parties always show the prompt.
 
 #### Options
 * `consent` - Show the permissions prompt if any additional
-  permissions are required.
+  permissions are required. Only applicable for `trusted` relying parties.
+  Untrusted relying parties always show the prompt.
+* `none` - Require no user interaction if the user is signed in.
+  Only applicable for `trusted` relying parties that are not requesting
+  keys. An error is thrown for all others.
 
 #### When to specify
-When authenticating a user for OAuth. Only applicable for `trusted` reliers.
-Untrusted reliers always show the prompt.
+When authenticating a user for OAuth.
 
 * /oauth/signin
 * /oauth/signup
@@ -288,15 +291,15 @@ when authentication completes.
 Used in the verification flows to specify the verification code.
 
 #### When to use
-Should not be used by reliers.
+Should not be used by relying parties.
 
 ### `uid`
 Used in two cases:
 1. By the verification flows to specify the user id of the user being verified.
-1. By reliers when loading a settings page to specify which account should be used.
+1. By relying parties when loading a settings page to specify which account should be used.
 
 #### When to use
-Reliers who send users to a settings page to e.g., set an avatar, can pass a uid to
+relying parties who send users to a settings page to e.g., set an avatar, can pass a uid to
 ensure users with multiple accounts update the avatar for the correct account.
 
 ## Experimental/development parameters
@@ -316,7 +319,7 @@ Used by functional tests to synthesize localStorage being disabled.
 * `1`
 
 #### When to use
-Should not be used by reliers. Should only be used by functional tests.
+Should not be used by relying parties. Should only be used by functional tests.
 
 ### `forceAboutAccounts`
 Force Sync brokers to act as if the user opened FxA from within about:accounts.
@@ -325,7 +328,7 @@ Force Sync brokers to act as if the user opened FxA from within about:accounts.
 * `true`
 
 #### When to use
-Should not be used by reliers. Should only be used for Sync based functional tests.
+Should not be used by relying parties. Should only be used for Sync based functional tests.
 
 ### `forceExperiment`
 Force a particular AB test.
@@ -353,7 +356,7 @@ Used to skip the confirmation form to reset a password
 * `false`
 
 #### When to use
-Should not be used by reliers.
+Should not be used by relying parties.
 Should only be used for accounts that must be reset.
 
 ### `emailToHashWith`
