@@ -28,7 +28,10 @@ cargo build --bin fxa_email_send;
 ../../_scripts/clone-authdb.sh
 cd ..
 
-cd fxa-event-broker; cargo build; cd ..
+# Don't build the Rust event broker as its a WIP that is deprecated.
+# The code remains here for revisiting at a later point when the GCP Rust
+# SDK is more mature.
+# cd fxa-event-broker-rs; cargo build; cd ..
 
 cd browserid-verifier; npm ci; cd ..
 

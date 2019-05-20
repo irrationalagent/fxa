@@ -158,10 +158,10 @@ jobs:
           path: ~/.pm2/logs
           destination: logs
 
-  fxa-event-broker:
+  fxa-event-broker-rs:
     docker:
       - image: circleci/rust
-    working_directory: ~/project/packages/fxa-event-broker
+    working_directory: ~/project/packages/fxa-event-broker-rs
     steps:
       - attach_workspace:
           at: ~/

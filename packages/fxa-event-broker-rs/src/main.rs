@@ -7,7 +7,7 @@
 //! For higher-level documentation,
 //! see the [readme].
 //!
-//! [readme]: https://github.com/mozilla/fxa/blob/master/packages/fxa-event-broker/README.md#fxa-event-broker
+//! [readme]: https://github.com/mozilla/fxa/blob/master/packages/fxa-event-broker-rs/README.md#fxa-event-broker
 
 mod settings;
 mod types;

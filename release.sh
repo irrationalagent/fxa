@@ -293,7 +293,7 @@ packages/fxa-content-server
 packages/fxa-customs-server
 packages/fxa-email-event-proxy
 packages/fxa-email-service
-packages/fxa-event-broker
+packages/fxa-event-broker-rs
 packages/fxa-profile-server"
 
 while read -r TARGET; do
