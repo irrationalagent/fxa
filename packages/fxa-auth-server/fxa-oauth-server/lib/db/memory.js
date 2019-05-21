@@ -296,6 +296,61 @@ MemoryStore.prototype = {
   },
 
   /**
+   * Get all access tokens for a given user.
+   * @param {String} uid User ID as hex
+   * @returns {Promise}
+   */
+  getAccessTokensByUid: async function getAccessTokensByUid(uid) {
+    if (! uid) {
+      return P.reject(new Error('Uid is required'));
+    }
+    const accessTokens = [];
+    Object.keys(this.tokens).forEach(id => {
+      const token = this.tokens[id];
+      if (token.userId.toString('hex') === uid) {
+        var clientIdHex = unbuf(token.clientId);
+        var client = this.clients[clientIdHex];
+        accessTokens.push({
+          accessTokenId: buf(id),
+          clientId: token.clientId,
+          createdAt: token.createdAt,
+          cleanName: client.name,
+          clientCanGrant: client.canGrant,
+          scope: this.tokens[id].scope
+        });
+      }
+    });
+    return accessTokens;
+  },
+
+  /**
+   * Get all refresh tokens for a given user.
+   * @param {String} uid User ID as hex
+   * @returns {Promise}
+   */
+  getRefreshTokensByUid: async function getRefreshTokensByUid(uid) {
+    if (! uid) {
+      return P.reject(new Error('Uid is required'));
+    }
+    const refreshTokens = [];
+    Object.keys(this.refreshTokens).forEach(id => {
+      const token = this.refreshTokens[id];
+      if (token.userId.toString('hex') === uid) {
+        var clientIdHex = unbuf(token.clientId);
+        var client = this.clients[clientIdHex];
+        refreshTokens.push({
+          refreshTokenId: buf(id),
+          clientId: token.clientId,
+          lastUsedAt: token.lastUsedAt,
+          cleanName: client.name,
+          scope: this.tokens[id].scope
+        });
+      }
+    });
+    return refreshTokens;
+  },
+
+  /**
    * Delete all authorization grants for some clientId and uid.
    *
    * @param {String} clientId Client ID
@@ -324,6 +379,29 @@ MemoryStore.prototype = {
 
     return P.resolve({});
   },
+
+  /**
+   * Delete a specific refresh token, for some clientId and uid.
+   * We don't actually need to know the clientId or uid in order to delete a refresh token,
+   * but since they're available we use them a an additional check.
+   *
+   * @param {String} refreshTokenid Refresh Token ID as Hex
+   * @param {String} clientId Client ID as Hex
+   * @param {String} uid User Id as Hex
+   * @returns {Promise}
+   */
+  deleteClientRefreshToken: async function deleteClientRefreshToken(refreshTokenId, clientId, uid) {
+    const token = this.refreshTokens[refreshTokenId];
+    if (token.ClientId.toString('hex') !== clientId) {
+      return false;
+    }
+    if (token.userId.toString('hex') !== uid) {
+      return false;
+    }
+    delete this.refreshTokens[refreshTokenId];
+    return true;
+  },
+
   generateRefreshToken: function generateRefreshToken(vals) {
     var token = unique.token();
     var t = {
